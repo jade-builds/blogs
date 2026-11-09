@@ -6,12 +6,13 @@ company: "다우기술 · 키움저축은행"
 project: "차세대 소비자금융 리뉴얼"
 role: "공통파트 PL / 전문 송수신·개발 환경 공통화"
 journey: "shared-foundation"
+relatedCases: ["shared-platform-lead"]
 period: "2022–2023 경험 · 2026 정리"
 tags: ["Java", "Spring", "외부기관 연동", "개발 환경"]
 order: 3
 draft: false
 publishedAt: "2026-11-06"
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-09"
 ---
 ## 기능을 제공하는 것과, 확인할 수 있게 하는 것은 달랐습니다
 

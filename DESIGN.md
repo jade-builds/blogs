@@ -1,7 +1,7 @@
 # Design
 
 ## Source of truth
-Active · 2026-11-07. GitHub Pages의 경력 포트폴리오 / 엔지니어링 노트북. 구 jade-devblog와 원천 경력 자료는 수정하지 않는다.
+Active · 2026-11-09. GitHub Pages의 경력 포트폴리오 / 엔지니어링 노트북. 구 jade-devblog와 원천 경력 자료는 수정하지 않는다.
 근거: 상위 research/포트폴리오_참고자료_및_작성기준.md, 직장별 경력 원천, 2026-08-10 성과 기록. 기존 웹 프로젝트의 코드·시각 자산은 차용하지 않았다.
 
 ## Brand
@@ -15,7 +15,8 @@ Active · 2026-11-07. GitHub Pages의 경력 포트폴리오 / 엔지니어링 �
 
 ## Information architecture
 홈: 소개 → 대표 사례 3건 → 경력의 흐름 → 경험 노트 → 연락.
-/cases/: 회사·기간·역할 → 상황 → 관찰/판단 → 변경 → 결과/한계.
+/cases/: 전체 공개 프로젝트 사례를 회사·프로젝트·기간과 함께 나열한다. 홈은 기존 대표 사례 3건을 유지하고 전체 목록 링크만 추가한다.
+/cases/:slug/: 회사·기간·역할 → 상황 → 관찰/판단 → 변경 → 결과/한계.
 /writing/: 검색·분류 가능한 노트 목록. /notes/: 경험 기반 글.
 홈·노트 목록·경력 흐름의 기술 글과 RSS는 명시적인 발행일 내림차순으로 정렬한다. 같은 발행일은 기존 order→slug, 날짜 없는 글은 뒤에 둔다. 수정일로 새 글인 것처럼 순서를 올리지 않고 대표 사례의 기존 순서는 유지한다.
 /journey/financial-integration/, /journey/shared-foundation/, /journey/platform-operations/: 금융 연동 → 공통 기반 → 플랫폼 운영의 세 경력 흐름. 홈의 기존 경력 맵과 노트 목록에서 정적 링크로 이동하며 JavaScript 없이 읽을 수 있다.

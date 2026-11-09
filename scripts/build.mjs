@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile, cp, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { loadContent, escape as e, publishedNotes } from '../src/content.mjs';
-import { home, article, writing, shell, journeyPage } from '../src/pages.mjs';
+import { home, article, writing, shell, journeyPage, caseIndex } from '../src/pages.mjs';
 import { journeys } from '../src/experience.mjs';
 import { createHash } from 'node:crypto';
 import { socialKey, socialFingerprint, assertSocialPng } from '../src/social.mjs';
@@ -43,6 +43,7 @@ export async function build({projectRoot=root, output=path.join(projectRoot,'dis
   const save=async (file,body)=>{await mkdir(path.dirname(path.join(output,file)),{recursive:true});await writeFile(path.join(output,file),body);};
   for(const card of cards.values())await save(card.href,card.buffer);
   await save('index.html',home(docs,metadata('')));
+  await save('cases/index.html',caseIndex(docs,metadata('cases/')));
   await save('writing/index.html',writing(docs,metadata('writing/')));
   for(const journey of journeys) await save(`${journey.href}index.html`,journeyPage(journey,docs,metadata(journey.href)));
   for(const doc of docs) await save(`${doc.href}index.html`,article(doc,docs,metadata(doc.href,doc)));
@@ -54,9 +55,9 @@ export async function build({projectRoot=root, output=path.join(projectRoot,'dis
   // Relative URLs preserve portability between an origin and GitHub project Pages.
   const link=origin||'.';
   await save('feed.xml',`<?xml version="1.0" encoding="utf-8"?><rss version="2.0"><channel><title>임재원의 경험 노트</title><link>${e(link)}/</link><description>경험에서 다음 설계의 기준을 찾습니다.</description><language>ko</language>${publishedNotes(docs).map(d=>`<item><title>${e(d.title)}</title><link>${e(link)}/${d.href}</link><guid isPermaLink="false">jaewon:${e(d.slug)}</guid><description>${e(d.summary)}</description>${d.publishedAt?`<pubDate>${new Date(d.publishedAt).toUTCString()}</pubDate>`:''}</item>`).join('')}</channel></rss>`);
-  if(origin) await save('sitemap.xml',`<?xml version="1.0" encoding="utf-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','writing/',...journeys.map(j=>j.href),...docs.map(d=>d.href)].map(p=>{const doc=docs.find(d=>d.href===p),date=doc?.updatedAt||doc?.publishedAt;return `<url><loc>${e(origin)}/${p}</loc>${date?`<lastmod>${date}</lastmod>`:''}</url>`;}).join('')}</urlset>`);
+  if(origin) await save('sitemap.xml',`<?xml version="1.0" encoding="utf-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','cases/','writing/',...journeys.map(j=>j.href),...docs.map(d=>d.href)].map(p=>{const doc=docs.find(d=>d.href===p),date=doc?.updatedAt||doc?.publishedAt;return `<url><loc>${e(origin)}/${p}</loc>${date?`<lastmod>${date}</lastmod>`:''}</url>`;}).join('')}</urlset>`);
   await save('content-index.json',JSON.stringify(docs.map(({title,summary,kind,slug,category,tags,href})=>({title,summary,kind,slug,category,tags,href})),null,2));
-  console.log(`Built ${docs.length+3+journeys.length} HTML pages · ${docs.length} published documents`);
+  console.log(`Built ${docs.length+4+journeys.length} HTML pages · ${docs.length} published documents`);
   return docs;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) await build();

@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { parseDocument, loadContent } from '../src/content.mjs';
 import { journeys, relatedDocuments } from '../src/experience.mjs';
-import { article, writing, journeyPage, home } from '../src/pages.mjs';
+import { article, writing, journeyPage, home, caseIndex } from '../src/pages.mjs';
 import { build, root } from '../scripts/build.mjs';
 import { newNote } from '../scripts/content.mjs';
 import { saveDocument, deleteDocument } from '../src/workspace.mjs';
@@ -65,10 +65,10 @@ test('Real career content keeps 2020 integration distinct from the 2022 renewal'
   const docs=await loadContent(root);
   const note=docs.find(d=>d.slug==='local-financial-integration');
   assert.equal(note.journey,'shared-foundation');assert.equal(note.project,'차세대 소비자금융 리뉴얼');
-  assert.deepEqual(relatedDocuments(note,docs).project,[]);
+  assert.deepEqual(relatedDocuments(note,docs).project.map(d=>d.slug),['shared-platform-lead']);
   assert(!relatedDocuments(note,docs).journey.some(d=>d.slug==='financial-integration'));
   assert.deepEqual(relatedDocuments(docs.find(d=>d.slug==='auth-cache'),docs).project.map(d=>d.slug),['object-lifetime']);
-  assert.deepEqual(relatedDocuments(docs.find(d=>d.slug==='platform-operations'),docs).project.map(d=>d.slug),['after-deployment']);
+  assert.deepEqual(relatedDocuments(docs.find(d=>d.slug==='platform-operations'),docs).project.map(d=>d.slug),['after-deployment','mlops-kubernetes-migration','gateway-oom','async-completion-boundary']);
 });
 
 test('Career copy speaks as its author without changing contribution or measurement scope',async()=>{
@@ -121,10 +121,25 @@ test('Build publishes journey pages and sitemap without leaking draft context',a
   await writeFile(path.join(folder,'content/notes/private.md'),noteRaw().replace('기술 글','숨겨야 할 제목').replace('공통 기반 프로젝트','비공개 프로젝트').replace('draft: false','draft: true'));
   await build({projectRoot:folder,siteUrl:'https://example.github.io/notebook'});
   const sitemap=await readFile(path.join(folder,'dist/sitemap.xml'),'utf8');
+  assert(sitemap.includes('https://example.github.io/notebook/cases/'));
+  assert((await readFile(path.join(folder,'dist/cases/index.html'),'utf8')).includes('전체 프로젝트 사례'));
   for(const journey of journeys){
     const html=await readFile(path.join(folder,'dist',journey.href,'index.html'),'utf8');
     assert.equal((html.match(/<h1[ >]/g)||[]).length,1);assert(html.includes(journey.title));
     assert(!html.includes('숨겨야 할 제목'));assert(!html.includes('비공개 프로젝트'));
     assert(sitemap.includes(`https://example.github.io/notebook/${journey.href}`));
   }
+});
+
+test('All public cases remain discoverable while the home keeps exactly three featured cases',async()=>{
+  const docs=await loadContent(root),cases=docs.filter(d=>d.kind==='cases');
+  assert.equal(cases.length,10);assert.equal(docs.filter(d=>d.kind==='notes').length,8);
+  const hidden={...cases[0],slug:'hidden',href:'cases/hidden/',title:'PRIVATE CASE',draft:true};
+  const landing=home([...docs,hidden]),index=caseIndex([...docs,hidden]);
+  assert.equal((landing.match(/class="featured-case"/g)||[]).length,1);
+  assert.equal((landing.match(/class="compact-case"/g)||[]).length,2);
+  assert(landing.includes('href="cases/"'));assert(!landing.includes('PRIVATE CASE'));assert(!index.includes('PRIVATE CASE'));
+  for(const doc of cases){assert(index.includes(`href="../${doc.href}"`));assert(index.includes(doc.company));assert(index.includes(doc.project));assert(index.includes(doc.period));}
+  for(const slug of ['local-financial-integration','batch-parallel-boundaries'])assert.deepEqual(relatedDocuments(docs.find(d=>d.slug===slug),docs).project.map(d=>d.slug),['shared-platform-lead']);
+  assert.match(article(cases[0],docs),/href="\.\.\/\.\.\/cases\/"/);
 });
