@@ -94,5 +94,176 @@
       "외부기관 연동"
     ],
     "href": "notes/financial-processing-boundaries/"
+  },
+  {
+    "title": "파기 배치 4시간을 1.5시간으로, SQL보다 반복 구조를 바꿨습니다",
+    "summary": "개인정보 파기에서 고객별로 반복하던 조회·이관·삭제를 단계별 통합 처리로 바꾸고, 운영 시간과 처리 경계를 함께 살폈습니다.",
+    "kind": "cases",
+    "slug": "privacy-purge-batch",
+    "category": "대량 데이터 처리",
+    "tags": [
+      "Java",
+      "Spring Framework",
+      "Tibero",
+      "SQL",
+      "배치"
+    ],
+    "href": "cases/privacy-purge-batch/"
+  },
+  {
+    "title": "병렬화 단위와 고객 트랜잭션 경계를 함께 바꾼 배치",
+    "summary": "차세대 소비자금융의 주요 배치를 ForkJoinPool로 병렬화하면서, 고객 단위 트랜잭션을 함께 조정해 28분 수준의 처리를 9분대로 줄였습니다.",
+    "kind": "notes",
+    "slug": "batch-parallel-boundaries",
+    "category": "배치의 처리 경계",
+    "tags": [
+      "Java",
+      "Spring Batch",
+      "Quartz",
+      "ForkJoinPool",
+      "트랜잭션"
+    ],
+    "href": "notes/batch-parallel-boundaries/"
+  },
+  {
+    "title": "DB를 바꿔도, 프레임워크의 동작은 같아야 했습니다",
+    "summary": "MariaDB 기반 스마트팩토리 프레임워크를 세 종류의 DBMS로 전환하고, 팀 최초로 JUnit 자동 검증을 도입해 반복 확인의 기반을 만들었습니다.",
+    "kind": "cases",
+    "slug": "database-portability",
+    "category": "프레임워크와 검증",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "JUnit",
+      "MariaDB",
+      "MSSQL",
+      "MySQL",
+      "PostgreSQL"
+    ],
+    "href": "cases/database-portability/"
+  },
+  {
+    "title": "Local PC 종속 운영을 Kubernetes로 옮긴 이유와 전환 범위",
+    "summary": "ML 서비스만 옮기는 대신 PostgreSQL·Kafka·Gateway 등 운영 의존성을 함께 구성하고, 내부 DB를 독립 PostgreSQL Pod로 분리했습니다.",
+    "kind": "notes",
+    "slug": "mlops-kubernetes-migration",
+    "category": "운영 구조의 전환",
+    "tags": [
+      "Kubernetes",
+      "Helm",
+      "PostgreSQL",
+      "Kafka",
+      "OpenSearch",
+      "MLOps"
+    ],
+    "href": "notes/mlops-kubernetes-migration/"
+  },
+  {
+    "title": "공통파트 PL로서, 다른 개발자가 사용할 경계를 만들었습니다",
+    "summary": "24명 규모 차세대 소비자금융 프로젝트에서 전문·인증·배포의 공통 경계를 정리해, 업무 개발자가 재사용할 개발 기반을 구축했습니다.",
+    "kind": "cases",
+    "slug": "shared-platform-lead",
+    "category": "공통 기반과 리딩",
+    "tags": [
+      "Java",
+      "Spring Security",
+      "JWT",
+      "GitLab",
+      "Maven",
+      "Ant",
+      "Logback"
+    ],
+    "href": "cases/shared-platform-lead/"
+  },
+  {
+    "title": "전문 포맷 변경을 공통 직렬화 구조로 다루기",
+    "summary": "NICE 통계 전문의 데이터와 포맷 정보를 분리하고, 생성과 검증 화면 파싱에서 같은 구조를 재사용하도록 설계했습니다.",
+    "kind": "cases",
+    "slug": "chips-format-design",
+    "category": "전문 설계와 재사용",
+    "tags": [
+      "Java",
+      "Spring Framework",
+      "Tibero",
+      "직렬화",
+      "배치"
+    ],
+    "href": "cases/chips-format-design/"
+  },
+  {
+    "title": "큰 요청으로 발생한 Gateway OOM을 어떻게 좁혔나",
+    "summary": "148MB 요청으로 External Gateway Pod 3개 중 2개가 다운된 OOM을 분석하고, Pod scale-out과 메모리 scale-up을 적용했습니다.",
+    "kind": "notes",
+    "slug": "gateway-oom",
+    "category": "운영 장애와 자원",
+    "tags": [
+      "Kubernetes",
+      "External Gateway",
+      "OOM",
+      "메모리",
+      "장애 대응"
+    ],
+    "href": "notes/gateway-oom/"
+  },
+  {
+    "title": "HTTP 202를 업무 완료로 오인했던 응답 처리",
+    "summary": "APS 야간 요청 4건 유실의 원인을 추적해, async_response=false에서 HTTP 202를 최종 응답으로 취급하던 처리 로직을 개선했습니다.",
+    "kind": "notes",
+    "slug": "async-completion-boundary",
+    "category": "비동기 처리의 완료 기준",
+    "tags": [
+      "HTTP",
+      "비동기 처리",
+      "External Gateway",
+      "APS",
+      "장애 분석"
+    ],
+    "href": "notes/async-completion-boundary/"
+  },
+  {
+    "title": "운영 데이터의 증가를 파티션과 SQL 실행 구조로 다루기",
+    "summary": "로그성 데이터의 증가를 저장 구조와 조회 경로로 나눠 살피고, 파티션·압축과 쿼리 구조 개선을 함께 적용했습니다.",
+    "kind": "cases",
+    "slug": "database-growth-operations",
+    "category": "DB 운영과 성능",
+    "tags": [
+      "Tibero",
+      "Oracle",
+      "SQL",
+      "Partition",
+      "Index",
+      "Compression"
+    ],
+    "href": "cases/database-growth-operations/"
+  },
+  {
+    "title": "같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것",
+    "summary": "기존 스마트팩토리 진단 시스템의 타 공장 전개에서, 환경별 리소스·구조와 외부 개발 로직의 결함을 일정·품질 리스크로 연결해 관리했습니다.",
+    "kind": "cases",
+    "slug": "factory-system-rollout",
+    "category": "시스템 전개와 리딩",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "JUnit",
+      "MySQL",
+      "PL"
+    ],
+    "href": "cases/factory-system-rollout/"
+  },
+  {
+    "title": "화면 구현과 개발파트 리딩을 함께 맡았던 경험",
+    "summary": "차량 내비게이션 GUI 데모에서 공통 인터페이스와 입력 이벤트를 구현하고, 협력업체 교육·업무 배분·요구사항 조율을 함께 맡았습니다.",
+    "kind": "cases",
+    "slug": "vehicle-hmi-lead",
+    "category": "인터페이스와 개발 리딩",
+    "tags": [
+      "EB Guide",
+      "HMI",
+      "이벤트 처리",
+      "공통 인터페이스",
+      "PL"
+    ],
+    "href": "cases/vehicle-hmi-lead/"
   }
 ]

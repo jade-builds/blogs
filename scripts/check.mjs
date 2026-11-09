@@ -41,5 +41,5 @@ for(const page of pages) {
 }
 for(const doc of docs.filter(d=>d.draft))assert(!files.includes(path.join(base,doc.href,'index.html')),'draft leakage');
 assert(!files.some(f=>f.includes('studio')||f.includes('content/cases')||f.includes('.trash')),'private source leakage');
-assert.equal(pages.length,docs.filter(d=>!d.draft).length+3+journeys.length);
+assert.equal(pages.length,docs.filter(d=>!d.draft).length+4+journeys.length);
 console.log(`PASS: ${pages.length} pages, ${links} local links/assets, canonical/PNG/JSON-LD, draft exclusion, editor exclusion, Korean metadata.`);

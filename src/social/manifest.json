@@ -6,5 +6,16 @@
   "cases-financial-integration": "9124bd18a2f992f12e9ee12c3b7bc3feb1e9189fc1d546c3119366533e3354a4",
   "notes-local-financial-integration": "895342de3ea6ea170919fcf5e99010688fa87f52c3ecf5505e2acb4eb832eddb",
   "cases-platform-operations": "9c4fe61050f6599126d0d26457c5419f86465417ca6e15801883029673d61b0d",
-  "notes-financial-processing-boundaries": "bd9fb515526346ef080a6ce1002f7be0fb8ba70f74b7a618df2508cdd4c9c8f6"
+  "notes-financial-processing-boundaries": "bd9fb515526346ef080a6ce1002f7be0fb8ba70f74b7a618df2508cdd4c9c8f6",
+  "cases-privacy-purge-batch": "3806b5415c1f8000c1ca4d72b0802249e5c0f5b3cdc8a4cbbeee1d403167b27d",
+  "notes-batch-parallel-boundaries": "3d27e8ffb852a36e81613bb1695ad1908a16be6a241de9420bbcfebd0d0e8f38",
+  "cases-database-portability": "39484c8d448e3330997105c54f04d6a1e1432e92a26c481a77a2fcb66b3fa1d4",
+  "notes-mlops-kubernetes-migration": "21b5ebfe3dd466102d36c761ca76bcb49556f7f98a5ee6458d67ae7d42cc2e17",
+  "cases-shared-platform-lead": "f462ada9e087b6e050e0de062f12a970f448d9cdea9b104f88a7cfab863790fa",
+  "cases-chips-format-design": "30c6f9121b8c1641838ca79e4c0a08f8f70bd1e0567783bea215c1ed15d4e297",
+  "notes-gateway-oom": "1d4d88a8c1c1715dc3d909735c1cd7d6c51f739106b16feaaca7d8d3d2df370d",
+  "notes-async-completion-boundary": "46c7ccc2156c41383cce22d6c10ee1c57396925f8facf26874a45d70cdcefed8",
+  "cases-database-growth-operations": "6e7ee4697f8a16fa0673f552cb73133a24048207c2e13617fdc504a4837e2572",
+  "cases-factory-system-rollout": "667eabc7777da62ee3fb64f278376fd95869bb61c00de8a556b65506e933645a",
+  "cases-vehicle-hmi-lead": "0e65fdd2f7f15ba7310eb13c0470b2c3dfe6bb172891d6fb502b232a5f70d489"
 }

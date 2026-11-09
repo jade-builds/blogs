@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f6f2">
+<title>화면 구현과 개발파트 리딩을 함께 맡았던 경험 · 임재원</title><meta name="description" content="차량 내비게이션 GUI 데모에서 공통 인터페이스와 입력 이벤트를 구현하고, 협력업체 교육·업무 배분·요구사항 조율을 함께 맡았습니다.">
+<meta property="og:title" content="화면 구현과 개발파트 리딩을 함께 맡았던 경험 · 임재원"><meta property="og:description" content="차량 내비게이션 GUI 데모에서 공통 인터페이스와 입력 이벤트를 구현하고, 협력업체 교육·업무 배분·요구사항 조율을 함께 맡았습니다."><meta property="og:type" content="article"><meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://jade-builds.github.io/blogs/cases/vehicle-hmi-lead/">
+<meta property="og:url" content="https://jade-builds.github.io/blogs/cases/vehicle-hmi-lead/">
+<meta property="og:site_name" content="임재원 · Engineering Notebook">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://jade-builds.github.io/blogs/social/cases-vehicle-hmi-lead-c639ed4d8194.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="화면 구현과 개발파트 리딩을 함께 맡았던 경험 · 임재원">
+<meta name="twitter:image" content="https://jade-builds.github.io/blogs/social/cases-vehicle-hmi-lead-c639ed4d8194.png">
+<meta name="twitter:image:alt" content="화면 구현과 개발파트 리딩을 함께 맡았던 경험 · 임재원">
+<meta property="article:published_time" content="2026-11-09">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"화면 구현과 개발파트 리딩을 함께 맡았던 경험","description":"차량 내비게이션 GUI 데모에서 공통 인터페이스와 입력 이벤트를 구현하고, 협력업체 교육·업무 배분·요구사항 조율을 함께 맡았습니다.","inLanguage":"ko","mainEntityOfPage":"https://jade-builds.github.io/blogs/cases/vehicle-hmi-lead/","author":{"@type":"Person","name":"임재원"},"image":["https://jade-builds.github.io/blogs/social/cases-vehicle-hmi-lead-c639ed4d8194.png"],"datePublished":"2026-11-09"}</script>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../style.css"><link rel="alternate" type="application/rss+xml" title="임재원의 경험 노트" href="../../feed.xml"><script src="../../app.js" defer></script></head>
+<body><a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../../index.html" aria-label="임재원 홈"><span class="brand-mark">j<span>.</span></span><span>임재원<span class="brand-caption">ENGINEERING NOTEBOOK</span></span></a>
+<nav class="desktop-nav" aria-label="주 메뉴"><a href="../../index.html#work" aria-current="page">경험</a><a href="../../index.html#career">경력</a><a href="../../writing/">노트</a></nav><a class="header-contact" href="mailto:jewon945@gmail.com">이야기 나누기 <span aria-hidden="true">↗</span></a>
+<details class="mobile-nav"><summary>메뉴 <span aria-hidden="true">＋</span></summary><nav aria-label="모바일 메뉴"><a href="../../index.html#work" aria-current="page">경험</a><a href="../../index.html#career">경력</a><a href="../../writing/">노트</a><a href="mailto:jewon945@gmail.com">연락하기</a></nav></details></div></header>
+<main id="main" class="article-page container"><div class="article-breadcrumb"><a href="../../index.html">홈</a><span>/</span><a href="../../cases/">문제 해결 사례</a></div><header class="article-header"><span class="eyebrow">인터페이스와 개발 리딩 / CASE STUDY</span><h1>화면 구현과 개발파트 리딩을 함께 맡았던 경험</h1><p class="article-lead">차량 내비게이션 GUI 데모에서 공통 인터페이스와 입력 이벤트를 구현하고, 협력업체 교육·업무 배분·요구사항 조율을 함께 맡았습니다.</p><div class="article-dates"><span>발행 <time datetime="2026-11-09">2026.11.09</time></span><span>3분 읽기</span></div><div class="article-context"><div><span>회사 · 수행 환경</span><strong>MDS테크 · 현대자동차</strong></div><div><span>프로젝트</span><strong>현대자동차 세로형 내비게이션 GUI 데모</strong></div><div><span>경험 시기</span><strong>2017.09 — 2018.03</strong></div><div><span>담당 범위</span><strong>개발 · 개발파트 PL / 개발 4명·디자인 2명 참여 · 기여도 50%</strong></div><div><span>기술 · 주제</span><strong>EB Guide · HMI · 이벤트 처리 · 공통 인터페이스 · PL</strong></div></div></header><details class="mobile-toc"><summary>이 글의 목차 <span>5개 섹션</span></summary><nav aria-label="모바일 글 목차"><a href="#section-0">제가 만든 것은 화면이면서, 다른 개발자가 구현할 기반이었습니다</a><a href="#section-1">화면에 앞서 입력과 공통 인터페이스를 다뤘습니다</a><a href="#section-2">직접 구현한 기반을 다른 개발자가 사용할 수 있게 했습니다</a><a href="#section-3">요구사항을 구현과 일정 사이에서 조율했습니다</a><a href="#section-4">결과는 데모 구현과 일정 내 완료였습니다</a></nav></details><div class="article-grid"><aside class="article-toc"><p class="eyebrow">IN THIS STORY</p><nav aria-label="이 글의 목차"><a href="#section-0">제가 만든 것은 화면이면서, 다른 개발자가 구현할 기반이었습니다</a><a href="#section-1">화면에 앞서 입력과 공통 인터페이스를 다뤘습니다</a><a href="#section-2">직접 구현한 기반을 다른 개발자가 사용할 수 있게 했습니다</a><a href="#section-3">요구사항을 구현과 일정 사이에서 조율했습니다</a><a href="#section-4">결과는 데모 구현과 일정 내 완료였습니다</a></nav><p class="toc-note">직접 수행한 경험과 기술적 판단을 정리했습니다.<br>개념도는 실제 코드·운영 구성과 구분합니다.</p></aside><article class="prose"><h2 id="section-0">제가 만든 것은 화면이면서, 다른 개발자가 구현할 기반이었습니다</h2>
+<p>MDS테크에서 현대자동차의 세로형 내비게이션 GUI 데모 개발과 개발파트 PL을 병행했습니다. 개발 4명·디자인 2명이 참여했고, 제 기여도는 50%입니다. 차량용 HMI 개발 솔루션인 EB Guide를 사용했습니다.</p>
+<p>클러스터·홈 화면을 직접 개발하는 한편, 업무별 공통 인터페이스와 사용자 입력 이벤트도 구현했습니다. 화면을 완성하는 일과 함께, 여러 개발자가 같은 기반 위에서 기능을 나눠 만들 수 있도록 하는 일이 제 담당 범위였습니다.</p>
+<h2 id="section-1">화면에 앞서 입력과 공통 인터페이스를 다뤘습니다</h2>
+<p>원 클릭·더블 클릭·롱 터치·상하좌우 드래그의 입력 패턴을 정의하고, 패턴별 이벤트 핸들러를 개발했습니다. 클러스터·미디어 등 업무별 공통 인터페이스를 만들고, 클러스터와 홈 화면, 아이콘 드래그·이동·자동 정렬 기능을 구현했습니다.</p>
+<p>이 작업을 화면 목록만으로 설명하면 입력을 해석하는 부분과 각 화면의 업무 동작을 연결한 경험이 빠집니다. <strong>같은 사용자 입력이 어떤 이벤트가 되고, 화면에서 어떤 기능으로 이어지는지</strong>를 함께 다뤘습니다.</p>
+<pre><code>담당 책임의 개념도
+
+사용자 입력 패턴
+    → 입력 패턴별 이벤트 핸들러
+    → 업무별 공통 인터페이스·화면 기능
+    → 클러스터·홈·아이콘 이동 및 정렬</code></pre>
+<p>위 그림은 역할을 요약한 개념도입니다. 실제 런타임 호출 순서나 당시 상태 머신의 코드·타이밍을 재현한 것은 아닙니다.</p>
+<h2 id="section-2">직접 구현한 기반을 다른 개발자가 사용할 수 있게 했습니다</h2>
+<p>협력업체 개발자 3명에게 솔루션 사용법과 개발 교육을 진행했습니다. 프로젝트 분석·설계와 업무 할당, 일정 산정·관리를 함께 맡았고 인원별 역량에 따라 업무를 재분배했습니다.</p>
+<p>직접 만든 기능이 있다는 것과, 팀이 그 기반을 사용해 담당 화면을 개발할 수 있다는 것은 다른 결과였습니다. 공통 구조의 구현과 솔루션 교육, 업무 배분을 함께 수행한 점이 개발파트 PL 경험의 중요한 부분입니다.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">개발자로 수행한 일</th><th scope="col">개발파트 PL로 연결한 일</th></tr></thead><tbody><tr><td>공통 인터페이스·입력 이벤트 구현</td><td>개발자들이 사용할 기반과 개발 방법 전달</td></tr><tr><td>클러스터·홈 화면·아이콘 기능 개발</td><td>역량에 따른 업무 할당·재분배</td></tr><tr><td>프로젝트 구조와 업무 로직 적용 구조 설계</td><td>일정 산정·관리와 요구사항 조율</td></tr></tbody></table></div>
+<p>이 표는 직접 수행한 역할의 연결입니다. 교육 3명과 개발 4명·디자인 2명을 별도 인원으로 합산하지 않습니다.</p>
+<h2 id="section-3">요구사항을 구현과 일정 사이에서 조율했습니다</h2>
+<p>고객사와 디자인 업체의 요구사항을 협의하고 일정을 조율했습니다. 구현을 담당하는 개발자, 화면을 정의하는 디자인 측, 결과를 확인하는 고객사 사이에서 요구사항을 전달하고 맞추는 역할이었습니다.</p>
+<p>다만 실제 요구 변경의 세부 사례나 회의·리뷰 제도를 임의로 덧붙이지는 않습니다. 제가 맡은 것은 개발파트의 리딩과 직접 개발이며, 전체 프로젝트의 모든 조직을 총괄했다는 의미가 아닙니다.</p>
+<h2 id="section-4">결과는 데모 구현과 일정 내 완료였습니다</h2>
+<p>공통 인터페이스·입력 이벤트·클러스터·홈 화면·아이콘 동작을 개발하고, 협력업체 교육과 업무 배분·일정 조율을 병행해 일정 내 프로젝트를 완료했습니다. 이 결과는 <strong>내비게이션 GUI 데모</strong>의 범위입니다. 양산 차량 탑재, 안전 인증이나 실제 도로 운행 검증을 완료했다는 뜻은 아닙니다.</p>
+<p>이 경험은 이후 공통파트 PL 역할에서도 이어졌습니다. 기능을 직접 만드는 것에 더해, 다른 개발자가 사용할 수 있는 기반과 수행 조건을 정리하는 일이 필요하다는 기준입니다. 기술 스택은 달라졌지만 구현과 협업의 경계를 함께 다룬 경험으로 남았습니다.</p><div class="article-end"><span>임재원 · Backend / Platform Engineer</span><a href="mailto:jewon945@gmail.com">이 경험에 대해 이야기 나누기 <span aria-hidden="true">↗</span></a></div></article></div></main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><span class="eyebrow">LET’S TALK</span><h2>함께 풀어 볼 문제가 있나요?</h2><p>백엔드의 실행 경로부터 운영의 다음 단계까지 이야기합니다.</p></div><a class="contact-link" href="mailto:jewon945@gmail.com">jewon945@gmail.com <span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© 2026 임재원</span><span>경험을 기록하고, 다음 설계로 연결합니다.</span><a href="https://jade-devblog.vercel.app/" target="_blank" rel="noopener noreferrer">기존 블로그 <span aria-hidden="true">↗</span></a></div></div></footer>
+</body></html>

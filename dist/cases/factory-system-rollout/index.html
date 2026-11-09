@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f6f2">
+<title>같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것 · 임재원</title><meta name="description" content="기존 스마트팩토리 진단 시스템의 타 공장 전개에서, 환경별 리소스·구조와 외부 개발 로직의 결함을 일정·품질 리스크로 연결해 관리했습니다.">
+<meta property="og:title" content="같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것 · 임재원"><meta property="og:description" content="기존 스마트팩토리 진단 시스템의 타 공장 전개에서, 환경별 리소스·구조와 외부 개발 로직의 결함을 일정·품질 리스크로 연결해 관리했습니다."><meta property="og:type" content="article"><meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://jade-builds.github.io/blogs/cases/factory-system-rollout/">
+<meta property="og:url" content="https://jade-builds.github.io/blogs/cases/factory-system-rollout/">
+<meta property="og:site_name" content="임재원 · Engineering Notebook">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://jade-builds.github.io/blogs/social/cases-factory-system-rollout-378a6b9cc607.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것 · 임재원">
+<meta name="twitter:image" content="https://jade-builds.github.io/blogs/social/cases-factory-system-rollout-378a6b9cc607.png">
+<meta name="twitter:image:alt" content="같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것 · 임재원">
+<meta property="article:published_time" content="2026-11-09">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것","description":"기존 스마트팩토리 진단 시스템의 타 공장 전개에서, 환경별 리소스·구조와 외부 개발 로직의 결함을 일정·품질 리스크로 연결해 관리했습니다.","inLanguage":"ko","mainEntityOfPage":"https://jade-builds.github.io/blogs/cases/factory-system-rollout/","author":{"@type":"Person","name":"임재원"},"image":["https://jade-builds.github.io/blogs/social/cases-factory-system-rollout-378a6b9cc607.png"],"datePublished":"2026-11-09"}</script>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../style.css"><link rel="alternate" type="application/rss+xml" title="임재원의 경험 노트" href="../../feed.xml"><script src="../../app.js" defer></script></head>
+<body><a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../../index.html" aria-label="임재원 홈"><span class="brand-mark">j<span>.</span></span><span>임재원<span class="brand-caption">ENGINEERING NOTEBOOK</span></span></a>
+<nav class="desktop-nav" aria-label="주 메뉴"><a href="../../index.html#work" aria-current="page">경험</a><a href="../../index.html#career">경력</a><a href="../../writing/">노트</a></nav><a class="header-contact" href="mailto:jewon945@gmail.com">이야기 나누기 <span aria-hidden="true">↗</span></a>
+<details class="mobile-nav"><summary>메뉴 <span aria-hidden="true">＋</span></summary><nav aria-label="모바일 메뉴"><a href="../../index.html#work" aria-current="page">경험</a><a href="../../index.html#career">경력</a><a href="../../writing/">노트</a><a href="mailto:jewon945@gmail.com">연락하기</a></nav></details></div></header>
+<main id="main" class="article-page container"><div class="article-breadcrumb"><a href="../../index.html">홈</a><span>/</span><a href="../../cases/">문제 해결 사례</a></div><header class="article-header"><span class="eyebrow">시스템 전개와 리딩 / CASE STUDY</span><h1>같은 시스템을 다른 공장에 전개할 때 PL이 확인한 것</h1><p class="article-lead">기존 스마트팩토리 진단 시스템의 타 공장 전개에서, 환경별 리소스·구조와 외부 개발 로직의 결함을 일정·품질 리스크로 연결해 관리했습니다.</p><div class="article-dates"><span>발행 <time datetime="2026-11-09">2026.11.09</time></span><span>3분 읽기</span></div><div class="article-context"><div><span>회사 · 수행 환경</span><strong>현대오토에버</strong></div><div><span>프로젝트</span><strong>스마트팩토리 진단 시스템 타 공장 전개</strong></div><div><span>경험 시기</span><strong>2025.03 — 2025.11</strong></div><div><span>담당 범위</span><strong>PL · Backend / 3명 참여 · 기여도 40%</strong></div><div><span>기술 · 주제</span><strong>Java · Spring Boot · JUnit · MySQL · PL</strong></div></div></header><details class="mobile-toc"><summary>이 글의 목차 <span>5개 섹션</span></summary><nav aria-label="모바일 글 목차"><a href="#section-0">이미 있는 시스템이라고, 그대로 옮길 수 있는 것은 아니었습니다</a><a href="#section-1">전개를 소스 복제가 아니라 적용 조건의 검토로 봤습니다</a><a href="#section-2">핵심 로직의 결함을 일정과 분리하지 않았습니다</a><a href="#section-3">개발과 PL의 역할은 같은 변경을 다른 관점에서 보는 일이었습니다</a><a href="#section-4">이 사례에서 보여주려는 결과</a></nav></details><div class="article-grid"><aside class="article-toc"><p class="eyebrow">IN THIS STORY</p><nav aria-label="이 글의 목차"><a href="#section-0">이미 있는 시스템이라고, 그대로 옮길 수 있는 것은 아니었습니다</a><a href="#section-1">전개를 소스 복제가 아니라 적용 조건의 검토로 봤습니다</a><a href="#section-2">핵심 로직의 결함을 일정과 분리하지 않았습니다</a><a href="#section-3">개발과 PL의 역할은 같은 변경을 다른 관점에서 보는 일이었습니다</a><a href="#section-4">이 사례에서 보여주려는 결과</a></nav><p class="toc-note">직접 수행한 경험과 기술적 판단을 정리했습니다.<br>개념도는 실제 코드·운영 구성과 구분합니다.</p></aside><article class="prose"><h2 id="section-0">이미 있는 시스템이라고, 그대로 옮길 수 있는 것은 아니었습니다</h2>
+<p>현대오토에버에서 스마트팩토리 진단 시스템의 타 공장 전개를 PL·Backend로 담당했습니다. 3명이 참여한 프로젝트에서 제 기여도는 40%입니다. 기존 프로젝트와 전개 프로젝트를 병행하며 서버 리소스·시스템 구조 산정, 결함 분석, 일정·이슈·리스크 관리를 수행했습니다.</p>
+<p>전개 대상에는 이미 구현된 시스템이 있었습니다. 하지만 기존 소스가 있다는 사실이 새로운 공장의 운영 조건까지 같다는 뜻은 아니었습니다. 이 작업의 중심 질문은 <strong>기존 구현을 어디까지 재사용하고, 새로운 환경에서 무엇을 다시 확인해야 하는가</strong>였습니다.</p>
+<h2 id="section-1">전개를 소스 복제가 아니라 적용 조건의 검토로 봤습니다</h2>
+<p>기존 진단 시스템의 구조를 검토하고, 타 공장 전개를 위한 서버 리소스와 시스템 구조를 산정했습니다. 공장 규모에 따라 데이터량·처리 빈도·저장소 요구가 달라질 수 있으므로 기존 환경의 구성을 그대로 전제하지 않는 것이 중요했습니다.</p>
+<p>이 부분에서 제가 맡은 일은 리소스 산정과 구조 검토였습니다. 실제 서버 사양, 부하 시험의 수치나 공장별 용량 계산식을 이 글에서 재현하지는 않습니다. 검토 대상과 산정 근거를 구분해야 ‘전개했다’는 한 문장 안에 다른 책임을 섞지 않을 수 있습니다.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">제가 확인·관리한 범위</th><th scope="col">전개에서의 의미</th></tr></thead><tbody><tr><td>기존 시스템 구조</td><td>재사용할 기반과 확인할 적용 조건 파악</td></tr><tr><td>서버 리소스·시스템 구조</td><td>타 공장 환경을 반영한 구성 산정</td></tr><tr><td>외부 개발 핵심 로직의 결함</td><td>품질 문제의 영향과 대응 범위 분석</td></tr><tr><td>기존 업무와 전개 일정</td><td>병행 작업의 이슈·리스크 관리</td></tr></tbody></table></div>
+<h2 id="section-2">핵심 로직의 결함을 일정과 분리하지 않았습니다</h2>
+<p>외부 개발자가 작성한 핵심 로직의 결함을 분석하고 Backend 관점의 구조 개선·결함 대응을 수행했습니다. PL 역할에서는 결함을 발견해 전달하는 데서 끝내지 않고, 그 문제가 전개 일정과 품질에 어떤 리스크가 되는지 함께 관리해야 했습니다.</p>
+<p>다만 결함을 분석했다는 사실만으로 특정 장애 원인이나 개선 알고리즘을 만들어 설명할 수는 없습니다. 이 글에서는 확인된 담당 범위에 집중하고, 결함의 코드·오류 조건·수정 전후 실행 결과는 임의로 재구성하지 않습니다.</p>
+<h2 id="section-3">개발과 PL의 역할은 같은 변경을 다른 관점에서 보는 일이었습니다</h2>
+<p>Backend 역할에서는 구현과 구조의 결함을 다뤘고, PL 역할에서는 리소스·일정·이슈·전개 리스크를 연결했습니다. 두 역할은 별도의 업무 목록이라기보다 하나의 변경을 실제 적용 가능한 상태로 만드는 서로 다른 확인이었습니다.</p>
+<p>특히 기존 프로젝트와 전개 프로젝트를 함께 관리했기 때문에, 새 전개만을 독립된 일정으로 보는 것으로는 충분하지 않았습니다. 제가 맡은 범위는 병행 프로젝트의 일정과 이슈를 관리하면서 전개에 필요한 기술적 판단을 수행하는 일이었습니다.</p>
+<h2 id="section-4">이 사례에서 보여주려는 결과</h2>
+<p>타 공장 전개에 필요한 서버 리소스·시스템 구조를 산정하고, 외부 개발 로직의 결함 분석과 Backend 구조 개선·대응, 병행 일정·이슈·리스크 관리를 수행했습니다. 이를 모든 공장 전개의 총괄, 전개 후 장애 0건, 성능 향상 배수나 납기 단축률로 확대하지 않습니다.</p>
+<p>이 경험을 통해 시스템의 재사용 가능성을 기능 구현 여부만으로 판단하지 않게 됐습니다. 다음 전개에서도 코드의 존재, 적용 환경의 조건, 결함의 영향, 실제 수행 일정을 나눠 확인하겠습니다. 구체적인 성능 수치보다 <strong>재사용할 수 있는 것과 다시 판단해야 하는 것을 구분한 경험</strong>이 이 사례의 핵심입니다.</p><div class="article-end"><span>임재원 · Backend / Platform Engineer</span><a href="mailto:jewon945@gmail.com">이 경험에 대해 이야기 나누기 <span aria-hidden="true">↗</span></a></div></article></div></main>
+<footer class="site-footer"><div class="container"><div class="footer-top"><div><span class="eyebrow">LET’S TALK</span><h2>함께 풀어 볼 문제가 있나요?</h2><p>백엔드의 실행 경로부터 운영의 다음 단계까지 이야기합니다.</p></div><a class="contact-link" href="mailto:jewon945@gmail.com">jewon945@gmail.com <span aria-hidden="true">↗</span></a></div><div class="footer-bottom"><span>© 2026 임재원</span><span>경험을 기록하고, 다음 설계로 연결합니다.</span><a href="https://jade-devblog.vercel.app/" target="_blank" rel="noopener noreferrer">기존 블로그 <span aria-hidden="true">↗</span></a></div></div></footer>
+</body></html>
